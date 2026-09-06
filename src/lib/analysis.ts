@@ -20,7 +20,7 @@ export interface AnalysisResult {
   category: Category;
   severity: Severity;
   sentiment: string;
-  entities: { location?: string; infrastructure: string; peopleAffected: number };
+  entities: { location?: string | undefined; infrastructure: string; peopleAffected: number };
   summary: string;
   matchedClusterId: string;
   similarity: number;
