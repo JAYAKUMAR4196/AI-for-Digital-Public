@@ -10,33 +10,63 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CitizenVoiceRouteImport } from './routes/citizen-voice'
+import { Route as DemandRouteImport } from './routes/demand'
+import { Route as HotspotRouteImport } from './routes/hotspot'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CitizenVoiceRoute = CitizenVoiceRouteImport.update({
+  id: '/citizen-voice',
+  path: '/citizen-voice',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DemandRoute = DemandRouteImport.update({
+  id: '/demand',
+  path: '/demand',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HotspotRoute = HotspotRouteImport.update({
+  id: '/hotspot',
+  path: '/hotspot',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/citizen-voice': typeof CitizenVoiceRoute
+  '/demand': typeof DemandRoute
+  '/hotspot': typeof HotspotRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/citizen-voice': typeof CitizenVoiceRoute
+  '/demand': typeof DemandRoute
+  '/hotspot': typeof HotspotRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/citizen-voice': typeof CitizenVoiceRoute
+  '/demand': typeof DemandRoute
+  '/hotspot': typeof HotspotRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/citizen-voice' | '/demand' | '/hotspot'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/citizen-voice' | '/demand' | '/hotspot'
+  id: '__root__' | '/' | '/citizen-voice' | '/demand' | '/hotspot'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CitizenVoiceRoute: typeof CitizenVoiceRoute
+  DemandRoute: typeof DemandRoute
+  HotspotRoute: typeof HotspotRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +78,35 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/citizen-voice': {
+      id: '/citizen-voice'
+      path: '/citizen-voice'
+      fullPath: '/citizen-voice'
+      preLoaderRoute: typeof CitizenVoiceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/demand': {
+      id: '/demand'
+      path: '/demand'
+      fullPath: '/demand'
+      preLoaderRoute: typeof DemandRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hotspot': {
+      id: '/hotspot'
+      path: '/hotspot'
+      fullPath: '/hotspot'
+      preLoaderRoute: typeof HotspotRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CitizenVoiceRoute: CitizenVoiceRoute,
+  DemandRoute: DemandRoute,
+  HotspotRoute: HotspotRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
