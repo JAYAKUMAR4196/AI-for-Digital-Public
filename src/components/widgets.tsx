@@ -81,7 +81,7 @@ export function SeverityChip({ severity }: { severity: Severity }) {
   );
 }
 
-export function Bar({ value, max, className = "" }: { value: number; max: number; className?: string }) {
+export function Bar({ value, max, className = "" }: { value: number; max: number; className?: string | undefined }) {
   const pct = Math.max(2, Math.round((value / Math.max(1, max)) * 100));
   return (
     <div className="h-2 w-full overflow-hidden rounded-full bg-muted">

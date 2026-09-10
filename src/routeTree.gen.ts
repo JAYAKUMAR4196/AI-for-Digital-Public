@@ -12,7 +12,11 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CitizenVoiceRouteImport } from './routes/citizen-voice'
 import { Route as DemandRouteImport } from './routes/demand'
+import { Route as GovernanceRouteImport } from './routes/governance'
 import { Route as HotspotRouteImport } from './routes/hotspot'
+import { Route as ImpactRouteImport } from './routes/impact'
+import { Route as PriorityRouteImport } from './routes/priority'
+import { Route as RecommendationsRouteImport } from './routes/recommendations'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -29,9 +33,29 @@ const DemandRoute = DemandRouteImport.update({
   path: '/demand',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GovernanceRoute = GovernanceRouteImport.update({
+  id: '/governance',
+  path: '/governance',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const HotspotRoute = HotspotRouteImport.update({
   id: '/hotspot',
   path: '/hotspot',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ImpactRoute = ImpactRouteImport.update({
+  id: '/impact',
+  path: '/impact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PriorityRoute = PriorityRouteImport.update({
+  id: '/priority',
+  path: '/priority',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RecommendationsRoute = RecommendationsRouteImport.update({
+  id: '/recommendations',
+  path: '/recommendations',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -39,34 +63,75 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/citizen-voice': typeof CitizenVoiceRoute
   '/demand': typeof DemandRoute
+  '/governance': typeof GovernanceRoute
   '/hotspot': typeof HotspotRoute
+  '/impact': typeof ImpactRoute
+  '/priority': typeof PriorityRoute
+  '/recommendations': typeof RecommendationsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/citizen-voice': typeof CitizenVoiceRoute
   '/demand': typeof DemandRoute
+  '/governance': typeof GovernanceRoute
   '/hotspot': typeof HotspotRoute
+  '/impact': typeof ImpactRoute
+  '/priority': typeof PriorityRoute
+  '/recommendations': typeof RecommendationsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/citizen-voice': typeof CitizenVoiceRoute
   '/demand': typeof DemandRoute
+  '/governance': typeof GovernanceRoute
   '/hotspot': typeof HotspotRoute
+  '/impact': typeof ImpactRoute
+  '/priority': typeof PriorityRoute
+  '/recommendations': typeof RecommendationsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/citizen-voice' | '/demand' | '/hotspot'
+  fullPaths:
+    | '/'
+    | '/citizen-voice'
+    | '/demand'
+    | '/governance'
+    | '/hotspot'
+    | '/impact'
+    | '/priority'
+    | '/recommendations'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/citizen-voice' | '/demand' | '/hotspot'
-  id: '__root__' | '/' | '/citizen-voice' | '/demand' | '/hotspot'
+  to:
+    | '/'
+    | '/citizen-voice'
+    | '/demand'
+    | '/governance'
+    | '/hotspot'
+    | '/impact'
+    | '/priority'
+    | '/recommendations'
+  id:
+    | '__root__'
+    | '/'
+    | '/citizen-voice'
+    | '/demand'
+    | '/governance'
+    | '/hotspot'
+    | '/impact'
+    | '/priority'
+    | '/recommendations'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CitizenVoiceRoute: typeof CitizenVoiceRoute
   DemandRoute: typeof DemandRoute
+  GovernanceRoute: typeof GovernanceRoute
   HotspotRoute: typeof HotspotRoute
+  ImpactRoute: typeof ImpactRoute
+  PriorityRoute: typeof PriorityRoute
+  RecommendationsRoute: typeof RecommendationsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -92,11 +157,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DemandRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/governance': {
+      id: '/governance'
+      path: '/governance'
+      fullPath: '/governance'
+      preLoaderRoute: typeof GovernanceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/hotspot': {
       id: '/hotspot'
       path: '/hotspot'
       fullPath: '/hotspot'
       preLoaderRoute: typeof HotspotRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/impact': {
+      id: '/impact'
+      path: '/impact'
+      fullPath: '/impact'
+      preLoaderRoute: typeof ImpactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/priority': {
+      id: '/priority'
+      path: '/priority'
+      fullPath: '/priority'
+      preLoaderRoute: typeof PriorityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/recommendations': {
+      id: '/recommendations'
+      path: '/recommendations'
+      fullPath: '/recommendations'
+      preLoaderRoute: typeof RecommendationsRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -106,7 +199,11 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CitizenVoiceRoute: CitizenVoiceRoute,
   DemandRoute: DemandRoute,
+  GovernanceRoute: GovernanceRoute,
   HotspotRoute: HotspotRoute,
+  ImpactRoute: ImpactRoute,
+  PriorityRoute: PriorityRoute,
+  RecommendationsRoute: RecommendationsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

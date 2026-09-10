@@ -8,7 +8,7 @@ import { DISTRICTS, GOLDEN_DISTRICT_ID, clusters, districtById, requests } from 
 import { priorityFor } from "@/lib/priority";
 
 export const Route = createFileRoute("/hotspot")({
-  validateSearch: (s: Record<string, unknown>) => ({ reveal: s.reveal === true || s.reveal === "true" }),
+  validateSearch: (s: Record<string, unknown>) => ({ reveal: s["reveal"] === true || s["reveal"] === "true" }),
   head: () => ({
     meta: [
       { title: "Hotspot Map — CivicNexus AI" },
